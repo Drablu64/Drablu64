@@ -9,10 +9,14 @@
         var username = document.getElementById('username').value;
         var password = document.getElementById('password').value;
         
-        // Contoh validasi sederhana
+        
         if (username === "admin" && password === "pass") {
-            // Simpan status login ke sessionStorage
             sessionStorage.setItem("loggedIn", true);
+            setTimeout(function() {
+                sessionStorage.removeItem("loggedIn");
+                alert("Sesi Anda telah berakhir. Silakan login kembali.");
+                window.location.href = 'login.html';
+            }, 600000);
             window.location.href = 'secret.html';
         } else {
             alert("Username atau Password salah!");
