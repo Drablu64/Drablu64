@@ -12,11 +12,6 @@
         
         if (username === "admin" && password === "pass") {
             sessionStorage.setItem("loggedIn", true);
-            setTimeout(function() {
-                sessionStorage.removeItem("loggedIn");
-                alert("Sesi Anda telah berakhir. Silakan login kembali.");
-                window.location.href = 'login.html';
-            }, 600000);
             window.location.href = 'secret.html';
         } else {
             alert("Username atau Password salah!");
