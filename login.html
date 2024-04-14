@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <script>
+    function checkLogin() {
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+        
+        // Contoh validasi sederhana
+        if (username === "admin" && password === "pass") {
+            // Simpan status login ke sessionStorage
+            sessionStorage.setItem("loggedIn", true);
+            window.location.href = 'secret.html';
+        } else {
+            alert("Username atau Password salah!");
+        }
+        return false;
+    }
+  </script>
+  <link rel="stylesheet" type="text/css" href="hstyle.css">
+</head>
+<body>
+    <h2>Login Page</h2>
+    <form onsubmit="return checkLogin()">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username"><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br><br>
+        <button type="submit">Login</button>
+    </form>
+</body>
+</html>
