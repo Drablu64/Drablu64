@@ -29,6 +29,11 @@
         button {
             cursor: pointer;
         }
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+        }
     </style>
 </head>
 <body>
@@ -49,6 +54,10 @@
         <p id="rpgResult"></p>
         <button onclick="resetRPG()">Main lagi?</button>
     </div>
+
+    <section>
+        <iframe src="https://www.w3schools.com/python/trypython.asp?filename=demo_default"></iframe>
+    </section>
     
     <script>
         let secretNumber = Math.floor(Math.random() * 1000000) + 1;
