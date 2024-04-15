@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tebak Angka Besar</title>
+    <title>Kombinasi Game: Tebak Angka dan RPG Sederhana</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f9;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             height: 100vh;
             margin: 0;
@@ -20,6 +20,7 @@
             background-color: #fff;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             border-radius: 8px;
+            margin-top: 20px;
         }
         input, button {
             padding: 10px;
@@ -39,10 +40,20 @@
         <p id="result"></p>
         <p id="time">Waktu: 0 detik</p>
     </div>
+
+    <div class="game-container">
+        <h1>Game RPG Sederhana</h1>
+        <p id="story">Anda bertemu dengan monster! Apa yang akan Anda lakukan?</p>
+        <button onclick="fight()">Bertarung</button>
+        <button onclick="run()">Lari</button>
+        <p id="rpgResult"></p>
+    </div>
     
     <script>
         let secretNumber = Math.floor(Math.random() * 1000000) + 1;
         let startTime = Date.now();
+        let playerHealth = 100;
+        let monsterHealth = 50;
 
         function checkGuess() {
             const userGuess = document.getElementById("guess").value;
@@ -65,11 +76,34 @@
 
         function resetGame() {
             secretNumber = Math.floor(Math.random() * 1000000) + 1;
-            startTime = Date.now();
+            startTime = Date.now(); // Reset the timer
             document.getElementById("result").innerHTML = "";
             document.getElementById("time").innerHTML = "Waktu: 0 detik";
             document.getElementById("guess").disabled = false;
             document.getElementById("guess").value = "";
+        }
+
+        function fight() {
+            let attack = Math.floor(Math.random() * 10) + 1;
+            monsterHealth -= attack;
+            if (monsterHealth <= 0) {
+                document.getElementById("rpgResult").innerHTML = "Anda berhasil mengalahkan monster!";
+                document.getElementById("story").innerHTML = "Game selesai. Anda menang!";
+                return;
+            }
+            let monsterAttack = Math.floor(Math.random() * 5) + 1;
+            playerHealth -= monsterAttack;
+            if (playerHealth <= 0) {
+                document.getElementById("rpgResult").innerHTML = "Anda dikalahkan oleh monster...";
+                document.getElementById("story").innerHTML = "Game selesai. Anda kalah.";
+                return;
+            }
+            document.getElementById("rpgResult").innerHTML = "Anda menyerang monster dan memberikan " + attack + " kerusakan. <br>Monster menyerang balik dan Anda menerima " + monsterAttack + " kerusakan.<br>Pemain HP: " + playerHealth + ", Monster HP: " + monsterHealth;
+        }
+
+        function run() {
+            document.getElementById("rpgResult").innerHTML = "Anda mencoba melarikan diri dan berhasil!";
+            document.getElementById("story").innerHTML = "Game selesai. Anda berhasil melarikan diri.";
         }
     </script>
 </body>
