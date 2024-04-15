@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tebak Angka</title>
+    <title>Tebak Angka Besar</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -32,15 +32,15 @@
 </head>
 <body>
     <div class="game-container">
-        <h1>Tebak Angka!</h1>
-        <p>Tebak angka dari 1 sampai 10</p>
-        <input type="number" id="guess" min="1" max="10">
+        <h1>Tebak Angka Besar!</h1>
+        <p>Tebak angka dari 1 sampai 1,000,000</p>
+        <input type="number" id="guess" min="1" max="1000000">
         <button onclick="checkGuess()">Tebak!</button>
         <p id="result"></p>
     </div>
     
     <script>
-        let secretNumber = Math.floor(Math.random() * 10) + 1;
+        let secretNumber = Math.floor(Math.random() * 1000000) + 1;
 
         function checkGuess() {
             const userGuess = document.getElementById("guess").value;
@@ -58,10 +58,10 @@
         }
 
         function resetGame() {
-            secretNumber = Math.floor(Math.random() * 10) + 1;
+            secretNumber = Math.floor(Math.random() * 1000000) + 1;
             document.getElementById("result").innerHTML = "";
             document.getElementById("guess").disabled = false;
-            document.getElementById("guess").value = "";
+            document.getElementById("guess").value = ""; 
         }
     </script>
 </body>
