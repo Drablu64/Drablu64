@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tebak Angka</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .game-container {
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        input, button {
+            padding: 10px;
+            margin-top: 10px;
+        }
+        button {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>Tebak Angka!</h1>
+        <p>Tebak angka dari 1 sampai 10</p>
+        <input type="number" id="guess" min="1" max="10">
+        <button onclick="checkGuess()">Tebak!</button>
+        <p id="result"></p>
+    </div>
+    
+    <script>
+        let secretNumber = Math.floor(Math.random() * 10) + 1;
+
+        function checkGuess() {
+            const userGuess = document.getElementById("guess").value;
+            const resultText = document.getElementById("result");
+            
+            if (userGuess == secretNumber) {
+                resultText.innerHTML = "Selamat! Anda menebak dengan benar.";
+                document.getElementById("guess").disabled = true;
+                resultText.innerHTML += "<br><button onclick='resetGame()'>Main lagi?</button>";
+            } else if (userGuess < secretNumber) {
+                resultText.innerHTML = "Terlalu rendah. Coba lagi!";
+            } else {
+                resultText.innerHTML = "Terlalu tinggi. Coba lagi!";
+            }
+        }
+
+        function resetGame() {
+            secretNumber = Math.floor(Math.random() * 10) + 1;
+            document.getElementById("result").innerHTML = "";
+            document.getElementById("guess").disabled = false;
+            document.getElementById("guess").value = "";
+        }
+    </script>
+</body>
+</html>
