@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,6 +47,7 @@
         <button onclick="fight()">Bertarung</button>
         <button onclick="run()">Lari</button>
         <p id="rpgResult"></p>
+        <button onclick="resetRPG()">Main lagi?</button>
     </div>
     
     <script>
@@ -98,12 +99,19 @@
                 document.getElementById("story").innerHTML = "Game selesai. Anda kalah.";
                 return;
             }
-            document.getElementById("rpgResult").innerHTML = "Anda menyerang monster dan memberikan " + attack + " kerusakan. <br>Monster menyerang balik dan Anda menerima " + monsterAttack + " kerusakan.<br>Pemain HP: " + playerHealth + ", Monster HP: " + monsterHealth;
+            document.getElementById("rpgResult").innerHTML = "Anda menyerang monster dan memberikan " + attack + " kerusakan. <br>Monster menyerang balik dan Anda menerima " + monsterAttack + " kerusakan.";
         }
 
         function run() {
-            document.getElementById("rpgResult").innerHTML = "Anda mencoba melarikan diri dan berhasil!";
+            document.getElementById("rpgResult").innerHTML = "Anda memilih untuk lari dari monster.";
             document.getElementById("story").innerHTML = "Game selesai. Anda berhasil melarikan diri.";
+        }
+
+        function resetRPG() {
+            playerHealth = 100;
+            monsterHealth = 50;
+            document.getElementById("rpgResult").innerHTML = "";
+            document.getElementById("story").innerHTML = "Anda bertemu dengan monster! Apa yang akan Anda lakukan?";
         }
     </script>
 </body>
