@@ -37,17 +37,21 @@
         <input type="number" id="guess" min="1" max="1000000">
         <button onclick="checkGuess()">Tebak!</button>
         <p id="result"></p>
+        <p id="time">Waktu: 0 detik</p>
     </div>
     
     <script>
         let secretNumber = Math.floor(Math.random() * 1000000) + 1;
+        let startTime = Date.now();
 
         function checkGuess() {
             const userGuess = document.getElementById("guess").value;
             const resultText = document.getElementById("result");
-            
+            const timeText = document.getElementById("time");
+            const elapsedTime = Math.floor((Date.now() - startTime) / 1000);
+
             if (userGuess == secretNumber) {
-                resultText.innerHTML = "Selamat! Anda menebak dengan benar.";
+                resultText.innerHTML = "Selamat! Anda menebak dengan benar dalam " + elapsedTime + " detik.";
                 document.getElementById("guess").disabled = true;
                 resultText.innerHTML += "<br><button onclick='resetGame()'>Main lagi?</button>";
             } else if (userGuess < secretNumber) {
@@ -55,13 +59,17 @@
             } else {
                 resultText.innerHTML = "Terlalu tinggi. Coba lagi!";
             }
+
+            timeText.innerHTML = "Waktu: " + elapsedTime + " detik";
         }
 
         function resetGame() {
             secretNumber = Math.floor(Math.random() * 1000000) + 1;
+            startTime = Date.now();
             document.getElementById("result").innerHTML = "";
+            document.getElementById("time").innerHTML = "Waktu: 0 detik";
             document.getElementById("guess").disabled = false;
-            document.getElementById("guess").value = ""; 
+            document.getElementById("guess").value = "";
         }
     </script>
 </body>
